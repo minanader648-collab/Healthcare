@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healthcare/features/on_boarding/onboarding.dart';
 import 'package:healthcare/features/splash/splash_view.dart';
 
 void main() {
@@ -13,10 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Rubik',
-      ),
+      theme: ThemeData(fontFamily: 'Rubik'),
       home: const SplashView(),
+      routes: {"/onboarding": (context) => OnboardingView()},
     );
   }
 }

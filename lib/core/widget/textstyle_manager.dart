@@ -8,4 +8,10 @@ class TextstyleManager {
     color: ColorsManager.blackColor,
     letterSpacing: 0.5,
   );
+  static const TextStyle bottomTextStyle = TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.bold,
+    color: ColorsManager.whiteColor,
+    letterSpacing: 0.5,
+  );
 }
