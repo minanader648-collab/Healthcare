@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:healthcare/features/on_boarding/model/onboarding_model.dart';
 import 'package:healthcare/features/on_boarding/widgets/onboarding_indicator.dart';
 
 class OnboardingItem extends StatelessWidget {
-  final String imagePath;
-  final String title;
-  final String subtitle;
+  final OnboardingModel model;
   final int currentIndex;
   final int itemCount;
 
   const OnboardingItem({
     super.key,
-    required this.imagePath,
-    required this.title,
-    required this.subtitle,
+    required this.model,
     required this.currentIndex,
     required this.itemCount,
   });
@@ -40,7 +37,7 @@ class OnboardingItem extends StatelessWidget {
                   ),
                 ],
                 image: DecorationImage(
-                  image: AssetImage(imagePath),
+                  image: AssetImage(model.image),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -57,7 +54,7 @@ class OnboardingItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Text(
-              title,
+              model.title,
               style: const TextStyle(
                 fontSize: 28.0,
                 fontWeight: FontWeight.bold,
@@ -72,7 +69,7 @@ class OnboardingItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40.0),
             child: Text(
-              subtitle,
+              model.subtitle,
               style: const TextStyle(
                 fontSize: 14.0,
                 color: Color(0xFF677294),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:healthcare/core/widget/app_background.dart';
 import 'package:healthcare/core/widget/colors_manager.dart';
 import 'package:healthcare/core/widget/custom_button.dart';
+import 'package:healthcare/features/on_boarding/model/onboarding_model.dart';
 import 'package:healthcare/features/on_boarding/widgets/onboarding_item.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -14,27 +15,6 @@ class OnboardingView extends StatefulWidget {
 class _OnboardingViewState extends State<OnboardingView> {
   final PageController _pageController = PageController();
   int _currentIndex = 0;
-
-  final List<Map<String, String>> _onboardingData = [
-    {
-      'image': 'assets/images/onbor1.png',
-      'title': 'Find Trusted Doctors',
-      'subtitle':
-          'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of it over 2000 years old.',
-    },
-    {
-      'image': 'assets/images/onbor2.png',
-      'title': 'Choose Best Doctors',
-      'subtitle':
-          'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of it over 2000 years old.',
-    },
-    {
-      'image': 'assets/images/onbor3.png',
-      'title': 'Easy Appointments',
-      'subtitle':
-          'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of it over 2000 years old.',
-    },
-  ];
 
   @override
   void dispose() {
@@ -58,20 +38,18 @@ class _OnboardingViewState extends State<OnboardingView> {
               Expanded(
                 child: PageView.builder(
                   controller: _pageController,
-                  itemCount: _onboardingData.length,
+                  itemCount: OnboardingModel.onboardingList.length,
                   onPageChanged: (index) {
                     setState(() {
                       _currentIndex = index;
                     });
                   },
                   itemBuilder: (context, index) {
-                    final item = _onboardingData[index];
+                    final item = OnboardingModel.onboardingList[index];
                     return OnboardingItem(
-                      imagePath: item['image']!,
-                      title: item['title']!,
-                      subtitle: item['subtitle']!,
+                      model: item,
                       currentIndex: _currentIndex,
-                      itemCount: _onboardingData.length,
+                      itemCount: OnboardingModel.onboardingList.length,
                     );
                   },
                 ),
@@ -84,7 +62,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                   CustomButton(
                     text: 'Get Started',
                     onPressed: () {
-                      if (_currentIndex < _onboardingData.length - 1) {
+                      if (_currentIndex < OnboardingModel.onboardingList.length - 1) {
                         _pageController.nextPage(
                           duration: const Duration(milliseconds: 350),
                           curve: Curves.easeInOut,
